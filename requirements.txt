@@ -1,0 +1,2 @@
+Flask
+pymongo[tls,srv]==3.8
