@@ -1,10 +1,8 @@
-from bson import ObjectId
+from app import api
+
 from flask import Flask, url_for, render_template
-from pymongo import MongoClient
 
 app = Flask(__name__)
-client = MongoClient('mongodb+srv://api:{}@peter-ovlls.mongodb.net/test?retryWrites=true&w=majority'.format(API_KEY))
-db = client.Green
 
 @app.route('/')
 def hello():
@@ -12,13 +10,11 @@ def hello():
 
 @app.route('/api/subjects')
 def get_data():
-    return '{}'.format([s for s in db.Subjects.find({})])
+    return api.get_all_subjects()
 
 @app.route('/api/subject/<string:subject_id>')
 def get_subject(subject_id):
-    s = db.Subjects.find_one({"_id": ObjectId(subject_id)})
-    print(s)
-    return '{}'.format(s)
+    return api.get_subject(subject_id)
 
 # url_for('static', filename='main.css')
 
