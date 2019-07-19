@@ -1,5 +1,15 @@
+#############
+# Flask App #
+#############
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 
 .dev
+
+#########
+# React #
+#########
+node_modules
+npm-debug.log
