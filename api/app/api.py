@@ -24,10 +24,10 @@ class DB:
         self._client.close()
 
 def get_all_subjects():
-    return '[{"name": "Beef", "img": "cow.png", "impact_units": "3.00", "category": "5d2678721c9d440000da14ae"}, {"name": "Legumes", "img": "pig.png", "impact_units": ".05", "category": "5d2678721c9d440000da14ae"}, {"name": "Pork", "img": "beans.png", "impact_units": ".781", "category": "5d2678721c9d440000da14ae"}, {"name": "Poultry", "img": "chicken.png", "impact_units": ".572", "category": "5d2678721c9d440000da14ae"}, {"name": "Potatoes", "img": "potatoes.png", "impact_units": ".01", "category": "5d2678721c9d440000da14ae"}, {"name": "Average Car", "img": "plane.png", "impact_units": ".35", "category": "5d267b8c36a05e4aaba3a9de"}]'
+    return '[{"name": "Beef", "img": "cow.png", "impact_units": "3.00", "category": "5d2678721c9d440000da14ae", "id": "5d2676581c9d440000da14ab"}, {"name": "Legumes", "img": "beans.png", "impact_units": ".05", "category": "5d2678721c9d440000da14ae", "id": "5d2677961c9d440000da14ad"}, {"name": "Pork", "img": "pig.png", "impact_units": ".781", "category": "5d2678721c9d440000da14ae", "id": "5d278c621c9d440000041dca"}, {"name": "Poultry", "img": "chicken.png", "impact_units": ".572", "category": "5d2678721c9d440000da14ae", "id": "5d278c931c9d440000041dcb"}, {"name": "Potatoes", "img": "potatoes.png", "impact_units": ".01", "category": "5d2678721c9d440000da14ae", "id": "5d278ce81c9d440000041dcc"}, {"name": "Average Car", "img": "car.png", "impact_units": ".35", "category": "5d267b8c36a05e4aaba3a9de", "id": "5d5a0ac91c9d4400009ec343"}]'
     db = DB()
-    subjects = [s for s in db.aggregate("Subjects", [{'$lookup':{'from': 'Images','localField': 'image','foreignField': '_id','as': 'img'}},{'$project':{'name':1,'img.file':1,'impact_units':1,'category':1}}])]
-    subjects = [{'name': s['name'], 'img': s['img'][0]['file'], 'impact_units': s['impact_units'], 'category': str(s['category'])} for s in subjects]
+    subjects = [s for s in db.aggregate("Subjects", [{'$lookup':{'from': 'Images','localField': 'image','foreignField': '_id','as': 'img'}},{'$project':{'name':1,'img.file':1,'impact_units':1,'category':1, '_id':1}}])]
+    subjects = [{'name': s['name'], 'img': s['img'][0]['file'], 'impact_units': s['impact_units'], 'category': str(s['category']), 'id': str(s['_id'])} for s in subjects]
     print('{}'.format(json.dumps(subjects)))
     return '{}'.format(json.dumps(subjects))
 

@@ -18,10 +18,27 @@ h1 {
 }
 div.icon {
     float: left;
+    margin-right: 10px;
+}
+#select-separator {
+    margin: 30px;
+}
+#output {
+    float: left;
+    clear: both;
 }
 .reset {
     clear: both;
 }
 footer {
+    clear: both;
     margin: 20px;
+}
+
+.select-area {
+    clear: both;
+}
+
+#select-separator {
+    clear: both;
 }
